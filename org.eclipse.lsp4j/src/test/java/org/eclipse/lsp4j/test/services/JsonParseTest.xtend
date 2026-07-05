@@ -50,6 +50,7 @@ import org.eclipse.lsp4j.Hover
 import org.eclipse.lsp4j.HoverCapabilities
 import org.eclipse.lsp4j.ImplementationCapabilities
 import org.eclipse.lsp4j.InitializeParams
+import org.eclipse.lsp4j.InlineValue
 import org.eclipse.lsp4j.InlineValueEvaluatableExpression
 import org.eclipse.lsp4j.InlineValueText
 import org.eclipse.lsp4j.InlineValueVariableLookup
@@ -1850,7 +1851,7 @@ class JsonParseTest {
 		'''.assertParse(new ResponseMessage => [
 			jsonrpc = "2.0"
 			id = "12"
-			result = newArrayList(Either3.forFirst(
+			result = newArrayList(new InlineValue(
 				new InlineValueText => [
 					range = new Range => [
 						start = new Position(4, 22)
@@ -1892,7 +1893,7 @@ class JsonParseTest {
 		'''.assertParse(new ResponseMessage => [
 			jsonrpc = "2.0"
 			id = "12"
-			result = newArrayList(Either3.forSecond(
+			result = newArrayList(new InlineValue(
 				new InlineValueVariableLookup => [
 					range = new Range => [
 						start = new Position(4, 22)
@@ -1933,7 +1934,7 @@ class JsonParseTest {
 		'''.assertParse(new ResponseMessage => [
 			jsonrpc = "2.0"
 			id = "12"
-			result = newArrayList(Either3.forThird(
+			result = newArrayList(new InlineValue(
 				new InlineValueEvaluatableExpression => [
 					range = new Range => [
 						start = new Position(4, 22)
